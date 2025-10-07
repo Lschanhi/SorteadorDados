@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using SorteadorDado.Models;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SorteadorDado
 {
@@ -15,22 +16,18 @@ namespace SorteadorDado
   
         private void SortearBtn_Clicked(object sender, EventArgs e)
         {
+            /* if(picker.SelectedIndex >= 0)
+             {
+                 int lados =  int.Parse(picker.SelectedItem.ToString());
 
-            if (picker.SelectedIndex >= 0)
-            {
-                
-                int lados = int.Parse(picker.SelectedItem.ToString());
+                 int numeros = rnd.Next(1, lados+1);
 
-                // Sorteia de 1 até o número de lados
-                int numero = rnd.Next(1, lados + 1);
-
-                MostrarResultado.Text = numero.ToString();
-            }
-            else
-            {
-                DisplayAlert("Aviso", "Selecione um dado antes de sortear.", "OK");
-            }
-
+                 MostrarResultado.Text = numeros.ToString();
+             }
+             */
+            Dado dado = new Dado(6);
+            dado.Rolar();
+            MostrarResultado.Text = dado.LadoSorteado.ToString();
         }
     }
 
