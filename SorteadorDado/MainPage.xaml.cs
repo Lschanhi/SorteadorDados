@@ -25,10 +25,26 @@ namespace SorteadorDado
                  MostrarResultado.Text = numeros.ToString();
              }
              */
-            Dado dado = new Dado(6);
-            dado.Rolar();
-            MostrarResultado.Text = dado.LadoSorteado.ToString();
+            try
+            {
+                if(picker.SelectedItem == null)
+                {
+                    DisplayAlert("Atenção", "Selecione um dado antes de sortear!", "OK");
+                    return;
+                }
+                int lados = int.Parse(picker.SelectedItem.ToString());
+                Dado dado = new Dado(lados);
+                dado.Rolar();
+                MostrarResultado.Text = dado.LadoSorteado.ToString();
+            }
+            
+            catch(Exception ex)
+            {
+                DisplayAlert("Erro inesperado", $"Ocorreu um erro: {ex.Message}", "OK");
+            }
         }
+            
+        
     }
 
 }
